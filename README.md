@@ -1,24 +1,50 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Colomn|Type|Options|
+|------|------|------|
+|user|string| |
+|email|string| |
+|password_digest|string| |
 
-Things you may want to cover:
+### Association
+- has_many :tasks
+- has_many :labels
 
-* Ruby version
+## tasksテーブル
 
-* System dependencies
+|Colomn|Type|Options|
+|------|------|------|
+|name|string| |
+|content|text| |
+|deadline|date| |
+|status|string| |
+|priority|string| |
+|user|references|foreign_key: true|
 
-* Configuration
+### Association
+- belongs_to :user
+- has_many :tasks_labels
+- has_many :labels, through: :tasks_labels
 
-* Database creation
 
-* Database initialization
+## labelsテーブル
 
-* How to run the test suite
+|Colomn|Type|Options|
+|------|------|------|
+|name|string| |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :user
+- has_many :tasks_labels
+- has_many :tasks, through: :tasks_labels
 
-* Deployment instructions
 
-* ...
+## tasks_labelsテーブル
+|Colomn|Type|Options|
+|------|------|------|
+|tasks|references|foreign_key: true|
+|labels|references|foreign_key: true|
+
+### Association
+- belongs_to :task
+- belongs_to :label
