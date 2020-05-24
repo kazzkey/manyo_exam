@@ -1,3 +1,18 @@
+# Manyo_exam
+
+##　Requirement
+* Ruby 2.6.5
+* Rails 5.2.4
+
+## Deploy
+
+`$ heroku login`
+`$ heroku create`
+コミットされているかを確認の上、
+`$ git push heroku master`
+`$ heroku run rails db:migrate`
+
+
 ## usersテーブル
 
 |Colomn|Type|Options|
@@ -14,8 +29,8 @@
 
 |Colomn|Type|Options|
 |------|------|------|
-|name|string| |
-|content|text| |
+|name|string|null: false|
+|content|text|null: false|
 |deadline|date| |
 |status|string| |
 |priority|string| |
