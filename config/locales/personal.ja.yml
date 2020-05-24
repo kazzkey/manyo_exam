@@ -1,0 +1,9 @@
+ja:
+  view:
+    Show: 詳細
+    Edit: 編集
+    Destroy: 削除
+    Back: 戻る
+    New Task: 新規作成
+  confirm:
+    Are you sure?: よろしいですか？
