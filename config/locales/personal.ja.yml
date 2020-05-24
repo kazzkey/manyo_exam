@@ -7,3 +7,11 @@ ja:
     New Task: 新規作成
   confirm:
     Are you sure?: よろしいですか？
+  activerecord:
+    models:
+      task: タスク
+      user: ユーザー
+    attributes:
+      task:
+        name: タスク名
+        content: タスク詳細
