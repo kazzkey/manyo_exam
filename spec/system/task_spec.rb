@@ -21,13 +21,22 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[1]).to have_content 'default_name1'
       end
     end
+    context '終了期限でソートするを選択した場合' do
+      it 'タスクが終了期限の降順に並んでいる' do
+        visit root_path
+        click_on '終了期限でソートする'
+        task_sort = all('tbody tr')
+        expect(task_sort[0]).to have_content 'default_name1'
+        expect(task_sort[1]).to have_content 'default_name2'
+      end
+    end
   end
   describe 'タスク登録画面' do
     context '必要項目を入力して、createボタンを押した場合' do
       it 'データが保存される' do
         visit new_task_path
-        fill_in 'Name', with: 'task_name'
-        fill_in 'Content', with: 'task_content'
+        fill_in 'タスク名', with: 'task_name'
+        fill_in 'タスク詳細', with: 'task_content'
         click_on '登録する'
         expect(page).to have_content 'task_name'
         expect(page).to have_content 'task_content'

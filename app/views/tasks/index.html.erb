@@ -7,6 +7,7 @@
     <tr>
       <th> <%= t('activerecord.attributes.task.name') %> </th>
       <th> <%= t('activerecord.attributes.task.content') %> </th>
+      <th> <%= t('activerecord.attributes.task.expired_at') %> </th>
     </tr>
   </thead>
 
@@ -15,6 +16,7 @@
       <tr>
         <td><%= task.name %></td>
         <td><%= task.content %></td>
+        <td><%= task.expired_at %></td>
         <td><%= link_to t('view.Show'), task %></td>
         <td><%= link_to t('view.Edit'), edit_task_path(task) %></td>
         <td><%= link_to t('view.Destroy'), task, method: :delete, data: { confirm: t('confirm.Are you sure?') } %></td>
@@ -24,5 +26,5 @@
 </table>
 
 <br>
-
+<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 <%= link_to t('view.New Task'), new_task_path %>

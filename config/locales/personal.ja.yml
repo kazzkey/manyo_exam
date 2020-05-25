@@ -15,3 +15,4 @@ ja:
       task:
         name: タスク名
         content: タスク詳細
+        expired_at: 終了期限
