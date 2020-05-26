@@ -16,5 +16,10 @@
   <%= @task.expired_at %>
 </p>
 
+<p>
+  <strong><%= t('activerecord.attributes.task.status') %>:</strong>
+  <%= @task.status %>
+</p>
+
 <%= link_to t('view.Edit'), edit_task_path(@task) %> |
 <%= link_to t('view.Back'), root_path %>
