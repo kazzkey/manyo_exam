@@ -4,6 +4,8 @@ class TasksController < ApplicationController
   def index
     if params[:sort_expired]
       @tasks = Task.all.sortby_expired_at
+    elsif params[:sort_priority]
+      @tasks = Task.all.sortby_priority
     elsif params[:search]
       if params[:name].present? && params[:status].present?
         @tasks = Task.name_like(params[:name]).status(params[:status])
@@ -11,8 +13,6 @@ class TasksController < ApplicationController
         @tasks = Task.name_like(params[:name])
       elsif params[:status].present?
         @tasks = Task.status(params[:status])
-      else
-        @tasks = Task.all.desc
       end
     else
       @tasks = Task.all.desc
@@ -59,6 +59,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:name, :content, :expired_at, :status)
+      params.require(:task).permit(:name, :content, :expired_at, :status, :priority)
     end
 end
