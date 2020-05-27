@@ -26,8 +26,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit root_path
         click_on '終了期限でソートする'
         task_sortby_e = all('tbody tr')
-        expect(task_sortby_e[0]).to have_content 'default_name1'
-        expect(task_sortby_e[1]).to have_content 'default_name2'
+        expect(task_sortby_e[0]).to have_content 'default_content1'
+        expect(task_sortby_e[1]).to have_content 'default_content2'
       end
     end
     context '優先順位でソートするを選択した場合' do

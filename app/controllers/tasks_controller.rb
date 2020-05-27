@@ -3,19 +3,19 @@ class TasksController < ApplicationController
 
   def index
     if params[:sort_expired]
-      @tasks = Task.all.sortby_expired_at
+      @tasks = Task.page(params[:page]).per(5).sortby_expired_at
     elsif params[:sort_priority]
-      @tasks = Task.all.sortby_priority
+      @tasks = Task.page(params[:page]).per(5).sortby_priority
     elsif params[:search]
       if params[:name].present? && params[:status].present?
-        @tasks = Task.name_like(params[:name]).status(params[:status])
+        @tasks = Task.page(params[:page]).per(5).name_like(params[:name]).status(params[:status])
       elsif params[:name].present?
-        @tasks = Task.name_like(params[:name])
+        @tasks = Task.page(params[:page]).per(5).name_like(params[:name])
       elsif params[:status].present?
-        @tasks = Task.status(params[:status])
+        @tasks = Task.page(params[:page]).per(5).status(params[:status])
       end
     else
-      @tasks = Task.all.desc
+      @tasks = Task.page(params[:page]).per(5).desc
     end
   end
 
@@ -53,12 +53,11 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
-
-    def task_params
-      params.require(:task).permit(:name, :content, :expired_at, :status, :priority)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
+  def task_params
+    params.require(:task).permit(:name, :content, :expired_at, :status, :priority)
+  end
 end

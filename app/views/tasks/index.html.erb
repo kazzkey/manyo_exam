@@ -30,6 +30,7 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @tasks %>
 
 <br>
 <%= link_to "終了期限でソートする", root_path(sort_expired: "true") %>
