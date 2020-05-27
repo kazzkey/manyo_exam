@@ -30,6 +30,32 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_sort[1]).to have_content 'default_name2'
       end
     end
+    context '検索をした場合' do
+      it 'タイトルで検索できる' do
+        visit root_path
+        fill_in 'name', with: 'default_name1'
+        click_on '検索'
+        task_sort = all('tbody tr')
+        expect(task_sort[0]).to have_content 'default_name1'
+      end
+      it 'ステータスで検索できる' do
+        visit root_path
+        select '着手中', from: 'status'
+        click_on '検索'
+        task_sort = all('tbody tr')
+        expect(task_sort[0]).to have_content '着手中'
+        expect(task_sort[1]).to have_content '着手中'
+      end
+      it 'タイトルとステータスの両方で検索できる' do
+        visit root_path
+        fill_in 'name', with: 'default_name1'
+        select '着手中', from: 'status'
+        click_on '検索'
+        task_sort = all('tbody tr')
+        expect(task_sort[0]).to have_content 'default_name1'
+        expect(task_sort[0]).to have_content '着手中'
+      end
+    end
   end
   describe 'タスク登録画面' do
     context '必要項目を入力して、createボタンを押した場合' do
@@ -38,10 +64,12 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'タスク名', with: 'task_name'
         fill_in 'タスク詳細', with: 'task_content'
         fill_in '終了期限', with: '0020200526'
+        select '着手中', from: 'ステータス'
         click_on '登録する'
         expect(page).to have_content 'task_name'
         expect(page).to have_content 'task_content'
         expect(page).to have_content '2020-05-26'
+        expect(page).to have_content '着手中'
       end
     end
   end
