@@ -3,9 +3,19 @@ class TasksController < ApplicationController
 
   def index
     if params[:sort_expired]
-      @tasks = Task.all.order(expired_at: "DESC")
+      @tasks = Task.all.sortby_expired_at
+    elsif params[:search]
+      if params[:name].present? && params[:status].present?
+        @tasks = Task.name_like(params[:name]).status(params[:status])
+      elsif params[:name].present?
+        @tasks = Task.name_like(params[:name])
+      elsif params[:status].present?
+        @tasks = Task.status(params[:status])
+      else
+        @tasks = Task.all.desc
+      end
     else
-      @tasks = Task.all.order(created_at: "DESC")
+      @tasks = Task.all.desc
     end
   end
 
