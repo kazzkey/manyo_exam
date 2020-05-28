@@ -10,6 +10,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>To Do List</h1>
+        <br>
+        <%= link_to "ホーム", root_path,class: "btn btn-primary btn-lg" %>
+        <%= link_to "新規作成", new_task_path,class: "btn btn-primary btn-lg" %>
+      </div>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

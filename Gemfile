@@ -15,9 +15,10 @@ gem 'uglifier', '>= 1.3.0'
 
 
 gem 'coffee-rails', '~> 4.2'
-
 gem 'turbolinks', '~> 5'
 
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -45,7 +46,7 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'webdrivers'
+  gem "webdrivers", "~> 3.0"
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

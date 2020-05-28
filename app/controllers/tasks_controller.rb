@@ -2,7 +2,23 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.order(created_at: "DESC")
+    if params[:sort_expired]
+      @tasks = Task.page(params[:page]).per(5).sortby_expired_at
+    elsif params[:sort_priority]
+      @tasks = Task.page(params[:page]).per(5).sortby_priority
+    elsif params[:search]
+      if params[:name].present? && params[:status].present?
+        @tasks = Task.page(params[:page]).per(5).name_like(params[:name]).status(params[:status])
+      elsif params[:name].present?
+        @tasks = Task.page(params[:page]).per(5).name_like(params[:name])
+      elsif params[:status].present?
+        @tasks = Task.page(params[:page]).per(5).status(params[:status])
+      else
+        @tasks = Task.page(params[:page]).per(5).desc
+      end
+    else
+      @tasks = Task.page(params[:page]).per(5).desc
+    end
   end
 
   def show
@@ -39,12 +55,11 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
-
-    def task_params
-      params.require(:task).permit(:name, :content)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
+  def task_params
+    params.require(:task).permit(:name, :content, :expired_at, :status, :priority)
+  end
 end

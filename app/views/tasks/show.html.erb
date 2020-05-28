@@ -1,15 +1,42 @@
 <p id="notice"><%= notice %></p>
-<h1>Show Task</h1>
 
-<p>
-  <strong>タスク名:</strong>
-  <%= @task.name %>
-</p>
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4><%= @task.name %></h4>
+    </div>
+    <div class="panel-body">
+      <p class="lead col-sm-12">
+        <strong><%= t('activerecord.attributes.task.content') %>:</strong>
+        <%= @task.content %>
+      </p>
 
-<p>
-  <strong>タスク詳細:</strong>
-  <%= @task.content %>
-</p>
+      <p class="col-sm-12">
+        <strong><%= t('activerecord.attributes.task.expired_at') %>:</strong>
+        <%= @task.expired_at %>
+      </p>
 
-<%= link_to t('view.Edit'), edit_task_path(@task) %> |
-<%= link_to t('view.Back'), root_path %>
+      <p class="col-sm-12">
+        <strong><%= t('activerecord.attributes.task.status') %>:</strong>
+        <%= @task.status %>
+      </p>
+
+      <p class="col-sm-12">
+        <strong><%= t('activerecord.attributes.task.priority') %>:</strong>
+        <%= @task.priority %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="row col-sm-2 col-sm-offset-9 col-xs-3 col-xs-offset-7">
+  <div class="">
+    <%= link_to t('view.Edit'), edit_task_path(@task), class: "btn btn-primary" %>
+  </div>
+</div>
+
+<div class="row col-sm-1 col-xs-1">
+  <div class="">
+    <%= link_to t('view.Back'), root_path, class: "btn btn-default" %>
+  </div>
+</div>
