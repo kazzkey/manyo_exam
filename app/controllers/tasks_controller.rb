@@ -13,6 +13,8 @@ class TasksController < ApplicationController
         @tasks = Task.page(params[:page]).per(5).name_like(params[:name])
       elsif params[:status].present?
         @tasks = Task.page(params[:page]).per(5).status(params[:status])
+      else
+        @tasks = Task.page(params[:page]).per(5).desc
       end
     else
       @tasks = Task.page(params[:page]).per(5).desc
