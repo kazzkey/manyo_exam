@@ -1,37 +1,45 @@
 <%= form_with(model: task, local: true) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> </h2>
+  <div class="row">
+    <div class="">
+      <% if task.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(task.errors.count, "error") %> </h2>
 
-      <ul>
-      <% task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-  <div class="name">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div class="content">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-  <div class="expired_at">
-    <%= form.label :expired_at %>
-    <%= form.date_field :expired_at %>
-  </div>
-  <div class="status">
-    <%= form.label :status %>
-    <%= form.select :status,["未着手","着手中","完了"] %>
-  </div>
-  <div class="priority">
-    <%= form.label :priority %>
-    <%= form.select :priority,["低","中","高"] %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  </div>
+  <div class="row">
+    <div class="name form-group col-sm-12">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="content form-group col-sm-12">
+      <%= form.label :content %>
+      <%= form.text_field :content, class: "form-control input-lg" %>
+    </div>
+    <div class="expired_at form-group col-xs-4">
+      <%= form.label :expired_at %>
+      <%= form.date_field :expired_at, class: "form-control" %>
+    </div>
+    <div class="status form-group col-xs-4">
+      <%= form.label :status %><br>
+      <%= form.select :status,["未着手","着手中","完了"], class: "form-control" %>
+    </div>
+    <div class="priority form-group col-xs-4">
+      <%= form.label :priority %><br>
+      <%= form.select :priority,["低","中","高"], class: "form-control" %>
+    </div>
+  </div>
+  <div class="row col-sm-2 col-sm-offset-9 col-xs-3 col-xs-offset-7">
+    <div class="actions form-group">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

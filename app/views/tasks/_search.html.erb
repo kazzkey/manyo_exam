@@ -1,8 +1,14 @@
 <%= form_with(url: root_path, method: :get, local: true) do |form| %>
-  <%= form.label :name_search, "タイトル検索" %>
-  <%= form.search_field :name, placeholder: "タイトルを入力" %>
-  <%= form.label :status_search, "状態検索" %>
-  <%= form.select :status,["未着手","着手中","完了"], include_blank: true %>
-  <%= form.hidden_field :search, value: 'true' %>
-  <%= form.submit "検索" %>
+  <div class="form-inline">
+    <div class="form-group">
+      <%= form.label :name_search, "タイトル検索" %>
+      <%= form.search_field :name, class: "form-control", placeholder: "タイトルを入力" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :status_search, "状態検索" %>
+      <%= form.select :status,["未着手","着手中","完了"], include_blank: true %>
+    </div>
+    <%= form.hidden_field :search, value: 'true' %>
+    <%= form.submit "検索", class: "btn btn-default" %>
+  </div>
 <% end %>

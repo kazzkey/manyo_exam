@@ -1,38 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
+<div class="row pull-right">
+  <%= render 'search' %>
+</div>
 
-<%= render 'search' %>
 <br>
-<table>
-  <thead>
-    <tr>
-      <th> <%= t('activerecord.attributes.task.name') %> </th>
-      <th> <%= t('activerecord.attributes.task.content') %> </th>
-      <th> <%= t('activerecord.attributes.task.expired_at') %> </th>
-      <th> <%= t('activerecord.attributes.task.status') %> </th>
-      <th> <%= t('activerecord.attributes.task.priority') %> </th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @tasks.each do |task| %>
+<div class="row">
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= task.name %></td>
-        <td><%= task.content %></td>
-        <td><%= task.expired_at %></td>
-        <td><%= task.status %></td>
-        <td><%= task.priority %></td>
-        <td><%= link_to t('view.Show'), task %></td>
-        <td><%= link_to t('view.Edit'), edit_task_path(task) %></td>
-        <td><%= link_to t('view.Destroy'), task, method: :delete, data: { confirm: t('confirm.Are you sure?') } %></td>
+        <th> <%= t('activerecord.attributes.task.name') %> </th>
+        <th> <%= t('activerecord.attributes.task.content') %> </th>
+        <th> <%= t('activerecord.attributes.task.expired_at') %> </th>
+        <th> <%= t('activerecord.attributes.task.status') %> </th>
+        <th> <%= t('activerecord.attributes.task.priority') %> </th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= paginate @tasks %>
+    </thead>
+
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.name %></td>
+          <td><%= task.content %></td>
+          <td><%= task.expired_at %></td>
+          <td><%= task.status %></td>
+          <td><%= task.priority %></td>
+          <td><%= link_to t('view.Show'), task %></td>
+          <td><%= link_to t('view.Edit'), edit_task_path(task) %></td>
+          <td><%= link_to t('view.Destroy'), task, method: :delete, data: { confirm: t('confirm.Are you sure?') } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @tasks %>
+</div>
 
 <br>
-<%= link_to "終了期限でソートする", root_path(sort_expired: "true") %>
-<%= link_to "優先順位でソートする", root_path(sort_priority: "true") %>
-<%= link_to t('view.New Task'), new_task_path %>
+
+<div class="row">
+  <%= link_to "終了期限でソートする", root_path(sort_expired: "true"),class: "btn btn-primary" %>
+  <%= link_to "優先順位でソートする", root_path(sort_priority: "true"),class: "btn btn-primary" %>
+</div>
