@@ -25,6 +25,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it 'タスクが終了期限の降順に並んでいる' do
         visit root_path
         click_on '終了期限でソートする'
+        sleep 0.5
         task_sortby_e = all('tbody tr')
         expect(task_sortby_e[0]).to have_content 'default_content1'
         expect(task_sortby_e[1]).to have_content 'default_content2'
@@ -34,6 +35,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it 'タスクが優先順位の降順に並んでいる' do
         visit root_path
         click_on '優先順位でソートする'
+        sleep 0.5
         task_sortby_p = all('tbody tr')
         expect(task_sortby_p[0]).to have_content 'default_content1'
         expect(task_sortby_p[1]).to have_content 'default_content2'
