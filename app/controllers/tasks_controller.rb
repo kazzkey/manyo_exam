@@ -4,21 +4,21 @@ class TasksController < ApplicationController
 
   def index
     if params[:sort_expired]
-      @tasks = Task.page(params[:page]).per(5).sortby_expired_at
+      @tasks = Task.page(params[:page]).per(5).my(current_user.id).sortby_expired_at
     elsif params[:sort_priority]
-      @tasks = Task.page(params[:page]).per(5).sortby_priority
+      @tasks = Task.page(params[:page]).per(5).my(current_user.id).sortby_priority
     elsif params[:search]
       if params[:name].present? && params[:status].present?
-        @tasks = Task.page(params[:page]).per(5).name_like(params[:name]).status(params[:status])
+        @tasks = Task.page(params[:page]).per(5).my(current_user.id).name_like(params[:name]).status(params[:status])
       elsif params[:name].present?
-        @tasks = Task.page(params[:page]).per(5).name_like(params[:name])
+        @tasks = Task.page(params[:page]).per(5).my(current_user.id).name_like(params[:name])
       elsif params[:status].present?
-        @tasks = Task.page(params[:page]).per(5).status(params[:status])
+        @tasks = Task.page(params[:page]).per(5).my(current_user.id).status(params[:status])
       else
-        @tasks = Task.page(params[:page]).per(5).desc
+        @tasks = Task.page(params[:page]).per(5).my(current_user.id).desc
       end
     else
-      @tasks = Task.page(params[:page]).per(5).desc
+      @tasks = Task.page(params[:page]).per(5).my(current_user.id).desc
     end
   end
 
