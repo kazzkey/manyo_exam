@@ -33,10 +33,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-
+    @task = current_user.tasks.build(task_params)
     if @task.save
-      redirect_to @task, notice: 'Task was successfully created.'
+      redirect_to @task, notice: 'タスクが作成されました'
     else
       render :new
     end
@@ -44,7 +43,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: 'Task was successfully updated.'
+      redirect_to @task, notice: 'タスクが更新されました'
     else
       render :edit
     end
@@ -52,11 +51,10 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to root_path, notice: 'Task was successfully destroyed.'
+    redirect_to root_path, notice: 'タスクが削除されました'
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_task
     @task = Task.find(params[:id])
   end

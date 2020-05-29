@@ -8,4 +8,5 @@ class Task < ApplicationRecord
   scope :name_like, ->(params) { where("name LIKE ?", "%#{params}%") }
   scope :status, ->(params) { where(status: params) }
   scope :search_all, ->(name, status) { name_like.status }
+  belongs_to :user
 end
