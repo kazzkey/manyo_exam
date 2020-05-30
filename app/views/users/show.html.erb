@@ -1,13 +1,17 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <h2>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<%= link_to t('view.Back'), root_path, class: "btn btn-default" %>
+<div class="row col-sm-offset-10 col-xs-offset-10">
+  <div class="">
+    <%= link_to t('view.Back'), root_path, class: "btn btn-default" %>
+  </div>
+</div>

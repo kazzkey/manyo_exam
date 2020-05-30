@@ -1,0 +1,36 @@
+<h1>管理者画面</h1>
+
+<div class="row">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>管理権限</th>
+        <th>user_id</th>
+        <th>ユーザ名</th>
+        <th>メールアドレス</th>
+        <th>タスク数</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.admin %></td>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.tasks.count %></td>
+          <td><%= link_to t('view.Show'), admin_user_path(user) %></td>
+          <td><%= link_to t('view.Edit'), edit_admin_user_path(user) %></td>
+          <td><%= link_to t('view.Destroy'), admin_user_path(user), method: :delete, data: { confirm: t('confirm.Are you sure?') } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @users %>
+</div>
+
+<br>
+
+<%= link_to t('view.New User'), new_admin_user_path %>
