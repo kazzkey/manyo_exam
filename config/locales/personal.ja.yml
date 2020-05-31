@@ -6,6 +6,8 @@ ja:
     Back: 戻る
     New Task: 新規作成
     New User: ユーザ作成
+    email: メールアドレス
+    password: パスワード
   confirm:
     Are you sure?: よろしいですか？
   activerecord:
