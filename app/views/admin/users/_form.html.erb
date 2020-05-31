@@ -37,7 +37,7 @@
 
       <div class="admin form-group col-sm-12">
         <%= form.label :admin %>
-        <%= form.select :status,[ "無", "有"], class: "form-control" %>
+        <%= form.check_box :admin, as: :boolian %>
       </div>
 
 
