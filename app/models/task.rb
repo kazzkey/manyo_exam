@@ -7,5 +7,5 @@ class Task < ApplicationRecord
   scope :sortby_priority, -> { order(priority: :desc) }
   scope :name_like, ->(params) { where("name LIKE ?", "%#{params}%") }
   scope :status, ->(params) { where(status: params) }
-  scope :search_all, ->(name, status) { name_like.status }
+  belongs_to :user
 end

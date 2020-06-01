@@ -1,0 +1,17 @@
+<div class="row">
+  <h2>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </h2>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+</div>
+
+<div class="row col-sm-offset-10 col-xs-offset-10">
+  <div class="">
+    <%= link_to t('view.Back'), root_path, class: "btn btn-default" %>
+  </div>
+</div>

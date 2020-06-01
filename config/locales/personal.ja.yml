@@ -5,6 +5,9 @@ ja:
     Destroy: 削除
     Back: 戻る
     New Task: 新規作成
+    New User: ユーザ作成
+    email: メールアドレス
+    password: パスワード
   confirm:
     Are you sure?: よろしいですか？
   activerecord:
@@ -18,3 +21,8 @@ ja:
         expired_at: 終了期限
         status: ステータス
         priority: 優先順位
+      user:
+        name: ユーザ名
+        email: メールアドレス
+        password: パスワード
+        password_cofirmation: パスワード(確認用)
