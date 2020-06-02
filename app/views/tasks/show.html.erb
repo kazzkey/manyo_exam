@@ -1,11 +1,15 @@
-
 <div class="row">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4><%= @task.name %></h4>
+    <div class="panel-heading clearfix">
+      <h4 class="pull-left"><%= @task.name %></h4>
+      <h4 class="pull-right">
+        <% @task.labels.each do |label| %>
+          <span class="label label-default"><%= label.name %></span>
+        <% end %>
+      </h4>
     </div>
     <div class="panel-body">
-      <p class="lead col-sm-12">
+      <p class="col-sm-12">
         <strong><%= t('activerecord.attributes.task.content') %>:</strong>
         <%= @task.content %>
       </p>

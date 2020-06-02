@@ -11,4 +11,10 @@ module SessionsHelper
       redirect_to new_session_path
     end
   end
+  def admin?
+    unless current_user.admin?
+      flash[:danger] = 'あなたは管理者ではありません'
+      redirect_to root_path
+    end
+  end
 end

@@ -5,3 +5,10 @@ User.create!(
   password_confirmation: '000000',
   admin: true,
 )
+Label.create!([
+  { name: '仕事' },
+  { name: '勉強' },
+  { name: '家事' },
+  { name: '趣味' },
+  { name: 'その他' },
+])

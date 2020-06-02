@@ -14,6 +14,8 @@ class TasksController < ApplicationController
         @tasks = current_user.tasks.page(params[:page]).per(5).name_like(params[:name])
       elsif params[:status].present?
         @tasks = current_user.tasks.page(params[:page]).per(5).status(params[:status])
+      elsif params[:label_id].present?
+        @tasks = current_user.tasks.page(params[:page]).per(5).label(params[:label_id])
       else
         @tasks = current_user.tasks.page(params[:page]).per(5).desc
       end
@@ -59,6 +61,6 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params[:id])
   end
   def task_params
-    params.require(:task).permit(:name, :content, :expired_at, :status, :priority)
+    params.require(:task).permit(:name, :content, :expired_at, :status, :priority, { label_ids: [] })
   end
 end
