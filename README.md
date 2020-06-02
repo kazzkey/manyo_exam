@@ -1,65 +1,72 @@
-# Manyo_exam
+# README(Manyo_exam)
 
-##　Requirement
+## Description
+* タスク管理アプリです。
+
+## Requirement
 * Ruby 2.6.5
 * Rails 5.2.4
+* Postgresql 12.2
 
-## Deploy
+## HowToDeploy
+```
+$ heroku login
+$ heroku create
+```
 
-`$ heroku login`
-`$ heroku create`
-コミットされているかを確認の上、
-`$ git push heroku master`
-`$ heroku run rails db:migrate`
+コミットを確認の上、
+```
+$ git push heroku master
+$ heroku run rails db:migrate
+```
 
+## Model
 
-## usersテーブル
-
+### usersテーブル
 |Colomn|Type|Options|
-|------|------|------|
-|user|string| |
-|email|string| |
-|password_digest|string| |
+|-----|-----|-----|
+|user|string|null: false|
+|email|string|null: false, unique: true|
+|password_digest|string|null: false|
+|admin|boolean|default: false, null: false|
 
-### Association
-- has_many :tasks
-- has_many :labels
+#### Association
+- has_many :tasks, dependent: :destroy
 
-## tasksテーブル
-
+### tasksテーブル
 |Colomn|Type|Options|
-|------|------|------|
+|-----|-----|-----|
 |name|string|null: false|
 |content|text|null: false|
-|deadline|date| |
-|status|string| |
-|priority|string| |
+|expired_at|date|default: "2020-01-01", null: false|
+|status|string|default: "未着手", null: false|
+|priority|integer|default: 0, null: false|
 |user|references|foreign_key: true|
 
-### Association
+#### Association
 - belongs_to :user
-- has_many :tasks_labels
-- has_many :labels, through: :tasks_labels
+- has_many :labellings, dependent: :destroy
+- has_many :labels, through: :labellings
 
 
-## labelsテーブル
+### labelsテーブル
 
 |Colomn|Type|Options|
-|------|------|------|
+|-----|-----|-----|
 |name|string| |
 
-### Association
+#### Association
 - belongs_to :user
-- has_many :tasks_labels
-- has_many :tasks, through: :tasks_labels
+- has_many :labellings, dependent: :destroy
+- has_many :tasks, through: :labellings
 
 
-## tasks_labelsテーブル
+### labellingsテーブル
 |Colomn|Type|Options|
-|------|------|------|
+|-----|-----|-----|
 |tasks|references|foreign_key: true|
 |labels|references|foreign_key: true|
 
-### Association
+#### Association
 - belongs_to :task
 - belongs_to :label

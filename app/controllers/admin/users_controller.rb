@@ -1,9 +1,11 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :admin?
+  layout "admin_layout"
 
   def index
     @users = User.page(params[:page]).per(5).select(:id, :name, :email, :admin).asc
+    @labels = Label.page(params[:page]).per(3)
   end
 
   def show
@@ -43,12 +45,6 @@ class Admin::UsersController < ApplicationController
   end
 
   private
-  def admin?
-    unless current_user.admin?
-      flash[:danger] = 'あなたは管理者ではありません'
-      redirect_to root_path
-    end
-  end
   def set_user
     @user = User.find(params[:id])
   end

@@ -6,6 +6,7 @@ ja:
     Back: 戻る
     New Task: 新規作成
     New User: ユーザ作成
+    New Label: ラベル作成
     email: メールアドレス
     password: パスワード
   confirm:
@@ -14,6 +15,7 @@ ja:
     models:
       task: タスク
       user: ユーザー
+      label: ラベル
     attributes:
       task:
         name: タスク名
@@ -21,8 +23,11 @@ ja:
         expired_at: 終了期限
         status: ステータス
         priority: 優先順位
+        label: ラベル
       user:
         name: ユーザ名
         email: メールアドレス
         password: パスワード
         password_cofirmation: パスワード(確認用)
+      label:
+        name: ラベル名

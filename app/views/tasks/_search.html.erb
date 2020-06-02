@@ -8,6 +8,10 @@
       <%= form.label :status_search, "状態検索" %>
       <%= form.select :status,["未着手","着手中","完了"], include_blank: true %>
     </div>
+    <div class="form-group">
+      <%= form.label :label_search, "ラベル" %>
+      <%= form.select :label_id, Label.all.collect { |p| [p.name, p.id] }, include_blank: true %>
+    </div>
     <%= form.hidden_field :search, value: 'true' %>
     <%= form.submit "検索", class: "btn btn-default" %>
   </div>

@@ -28,13 +28,17 @@
       <%= form.label :expired_at %>
       <%= form.date_field :expired_at, class: "form-control" %>
     </div>
-    <div class="status form-group col-xs-4">
+    <div class="status form-group col-xs-2">
       <%= form.label :status %><br>
       <%= form.select :status,["未着手","着手中","完了"], class: "form-control" %>
     </div>
-    <div class="priority form-group col-xs-4">
+    <div class="priority form-group col-xs-6">
       <%= form.label :priority %><br>
       <%= form.select :priority,["低","中","高"], class: "form-control" %>
+    </div>
+    <div class="labels form-group col-xs-12">
+      <%= form.label :label %><br>
+      <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name ) %>
     </div>
   </div>
   <div class="row col-sm-2 col-sm-offset-9 col-xs-3 col-xs-offset-7">
